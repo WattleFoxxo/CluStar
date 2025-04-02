@@ -7,11 +7,7 @@
 
 #define SERVER_PORT 3969
 
-#define LED_CENTER_PIN 14 // D5
-#define LED_NORTH_PIN 12 // D6
-#define LED_SOUTH_PIN 13 // D7
-#define LED_EAST_PIN 5 // D1
-#define LED_WEST_PIN 4 // D2
+#define LED_PIN 14 // D5
 
 WiFiUDP udp;
 char packetBuffer[1024];
@@ -35,17 +31,9 @@ void setup() {
     Serial.print("UDP Server running on port ");
     Serial.println(SERVER_PORT);
 
-    pinMode(LED_CENTER_PIN, OUTPUT);
-    pinMode(LED_NORTH_PIN, OUTPUT);
-    pinMode(LED_SOUTH_PIN, OUTPUT);
-    pinMode(LED_EAST_PIN, OUTPUT);
-    pinMode(LED_WEST_PIN, OUTPUT);
+    pinMode(LED_PIN, OUTPUT);
 
-    digitalWrite(LED_CENTER_PIN, HIGH);
-    digitalWrite(LED_NORTH_PIN, HIGH);
-    digitalWrite(LED_SOUTH_PIN, HIGH);
-    digitalWrite(LED_EAST_PIN, HIGH);
-    digitalWrite(LED_WEST_PIN, HIGH);
+    digitalWrite(LED_PIN, HIGH);
 }
 
 void loop() {
@@ -60,11 +48,7 @@ void loop() {
 
             switch (command) {
                 case 0x00:
-                    digitalWrite(LED_CENTER_PIN, arg);
-                    digitalWrite(LED_NORTH_PIN, arg);
-                    digitalWrite(LED_SOUTH_PIN, arg);
-                    digitalWrite(LED_EAST_PIN, arg);
-                    digitalWrite(LED_WEST_PIN, arg);
+                    digitalWrite(LED_PIN, arg);
                     break;
                 default:
                     Serial.println("Unknown command :(");
